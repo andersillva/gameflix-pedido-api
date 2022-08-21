@@ -15,6 +15,7 @@ import br.com.andersillva.gameflixpedidoapi.controller.form.PedidoForm;
 import br.com.andersillva.gameflixpedidoapi.controller.util.VersaoAPI;
 import br.com.andersillva.gameflixpedidoapi.domain.model.Pedido;
 import br.com.andersillva.gameflixpedidoapi.domain.service.PedidoService;
+import br.com.andersillva.gameflixpedidoapi.security.UsuarioAutenticadoProvider;
 
 @RestController
 @RequestMapping(path=VersaoAPI.URI_BASE_V1, produces=MediaType.APPLICATION_JSON_VALUE)
@@ -22,11 +23,12 @@ public class PedidoController {
 
 	@Autowired
 	private PedidoService pedidoService;
-	
+
 	@PostMapping(consumes=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> registrar(@Valid @RequestBody PedidoForm pedidoForm) {
 
 		Pedido pedido = pedidoForm.converter();
+		pedido.setIdUsuario(UsuarioAutenticadoProvider.obterUsuarioAutenticado().getId());
 		pedidoService.registrar(pedido);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 

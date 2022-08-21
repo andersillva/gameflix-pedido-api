@@ -44,4 +44,17 @@ public class Pedido implements Serializable {
 	@OneToMany(mappedBy = "pedido")
 	private List<PedidoItem> itens = new ArrayList<>();
 
+	public void adicionarItem(PedidoItem item) {
+	    if (contem(item))
+	        return;
+	    item.setId(null);
+		item.setPedido(this);
+		itens.add(item);
+	}
+
+	private boolean contem(PedidoItem item) {
+		return itens.stream()
+				.anyMatch(i -> i.getIdProduto().equals(item.getIdProduto()));
+	}
+
 }
