@@ -22,7 +22,7 @@ public class EventoPedidoRecebidoImpl implements EventoPedidoRecebido {
 	private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
     @Value("${app.topic.pedido-recebido}")
-    private static String PEDIDO_RECEBIDO;
+    private String PEDIDO_RECEBIDO;
 
     public EventoPedidoRecebidoImpl(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;

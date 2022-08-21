@@ -2,6 +2,7 @@ package br.com.andersillva.gameflixpedidoapi.messagebroker.incoming;
 
 import javax.transaction.Transactional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -17,6 +18,7 @@ public class EventoPagamentoRegistrado {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
+    @Autowired
     private final PedidoService pedidoService;
 
     public EventoPagamentoRegistrado(PedidoService pedidoService) {
