@@ -1,6 +1,7 @@
 package br.com.andersillva.gameflixpedidoapi.controller.dto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 
@@ -27,7 +28,7 @@ public class PedidoItemDTO {
 	}
 
 	public static List<PedidoItemDTO> converter(List<PedidoItem> itens) {
-		return itens.stream().map(PedidoItemDTO::new).toList();
+		return itens.stream().map(PedidoItemDTO::new).collect(Collectors.toList());
 	}
 
 }
