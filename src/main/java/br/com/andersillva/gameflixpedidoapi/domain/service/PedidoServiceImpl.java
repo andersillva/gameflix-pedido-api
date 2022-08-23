@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.andersillva.gameflixpedidoapi.domain.model.Pedido;
 import br.com.andersillva.gameflixpedidoapi.domain.model.domaintype.StatusPedido;
-import br.com.andersillva.gameflixpedidoapi.domain.repository.PedidoItemRepository;
 import br.com.andersillva.gameflixpedidoapi.domain.repository.PedidoRepository;
 import br.com.andersillva.gameflixpedidoapi.domain.service.exception.PedidoSemItensException;
 import br.com.andersillva.gameflixpedidoapi.domain.service.exception.RegistroNaoEncontradoException;
@@ -22,9 +21,6 @@ public class PedidoServiceImpl implements PedidoService {
 	@Autowired
 	private PedidoRepository pedidoRepository;
 
-	@Autowired
-	private PedidoItemRepository pedidoItemRepository;
-	
 	@Autowired
 	private EventoPedidoRecebido eventoPedidoRecebido;
 
@@ -40,8 +36,6 @@ public class PedidoServiceImpl implements PedidoService {
 		pedido.setData(LocalDate.now());
 
 		pedidoRepository.save(pedido);
-		pedido.getItens().forEach(item -> item.setPedido(pedido));
-		pedidoItemRepository.saveAll(pedido.getItens());
 		eventoPedidoRecebido.gerarMensagem(pedido);
 
 	}
