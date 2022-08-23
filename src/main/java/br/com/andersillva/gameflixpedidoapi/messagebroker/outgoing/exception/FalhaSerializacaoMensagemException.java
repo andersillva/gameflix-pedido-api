@@ -4,7 +4,7 @@ public class FalhaSerializacaoMensagemException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String MENSAGEM_PADRAO = "Falha ao serializar o pedido para envio ao message broker.";
+	private static final String MENSAGEM_PADRAO = "Falha ao serializar o objeto para envio ao message broker.";
 
 	public FalhaSerializacaoMensagemException() {
         super(MENSAGEM_PADRAO);

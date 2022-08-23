@@ -14,7 +14,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import br.com.andersillva.gameflixpedidoapi.domain.model.Pedido;
 import br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.dto.MensagemPedidoRecebidoDTO;
 import br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.exception.FalhaSerializacaoMensagemException;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
 public class EventoPedidoRecebidoImpl implements EventoPedidoRecebido {
 
@@ -37,6 +39,7 @@ public class EventoPedidoRecebidoImpl implements EventoPedidoRecebido {
 		try {
 			mensagem = objectMapper.writeValueAsString(mensagemDTO);
 		} catch (JsonProcessingException e) {
+			log.error(e.getMessage());
 			throw new FalhaSerializacaoMensagemException();
 		}
         kafkaTemplate.send(PEDIDO_RECEBIDO, mensagem);
