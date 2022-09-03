@@ -1,6 +1,5 @@
-package br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing;
+package br.com.andersillva.gameflixpedidoapi.messaging.outgoing;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
@@ -12,8 +11,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import br.com.andersillva.gameflixpedidoapi.domain.model.Pedido;
-import br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.dto.MensagemPedidoRecebidoDTO;
-import br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.exception.FalhaSerializacaoMensagemException;
+import br.com.andersillva.gameflixpedidoapi.messaging.outgoing.dto.MensagemPedidoRecebidoDTO;
+import br.com.andersillva.gameflixpedidoapi.messaging.outgoing.exception.FalhaSerializacaoMensagemException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,8 +32,7 @@ public class EventoPedidoRecebidoImpl implements EventoPedidoRecebido {
 	@Override
 	@Transactional(propagation=Propagation.MANDATORY)
 	public void gerarMensagem(Pedido pedido) {
-		ModelMapper mapper = new ModelMapper();
-		MensagemPedidoRecebidoDTO mensagemDTO = mapper.map(pedido, MensagemPedidoRecebidoDTO.class);
+		var mensagemDTO = new MensagemPedidoRecebidoDTO(pedido);
 		String mensagem;
 		try {
 			mensagem = objectMapper.writeValueAsString(mensagemDTO);

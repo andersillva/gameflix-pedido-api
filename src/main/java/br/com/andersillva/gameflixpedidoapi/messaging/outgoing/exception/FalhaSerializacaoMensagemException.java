@@ -1,4 +1,4 @@
-package br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.exception;
+package br.com.andersillva.gameflixpedidoapi.messaging.outgoing.exception;
 
 public class FalhaSerializacaoMensagemException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing;
+package br.com.andersillva.gameflixpedidoapi.messaging.outgoing;
 
 import br.com.andersillva.gameflixpedidoapi.domain.model.Pedido;
 

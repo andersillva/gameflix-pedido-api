@@ -1,4 +1,4 @@
-package br.com.andersillva.gameflixpedidoapi.messagebroker.incoming;
+package br.com.andersillva.gameflixpedidoapi.messaging.incoming;
 
 import javax.transaction.Transactional;
 

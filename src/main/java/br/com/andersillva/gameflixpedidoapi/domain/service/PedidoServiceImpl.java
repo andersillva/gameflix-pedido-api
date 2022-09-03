@@ -13,7 +13,7 @@ import br.com.andersillva.gameflixpedidoapi.domain.model.domaintype.StatusPedido
 import br.com.andersillva.gameflixpedidoapi.domain.repository.PedidoRepository;
 import br.com.andersillva.gameflixpedidoapi.domain.service.exception.PedidoSemItensException;
 import br.com.andersillva.gameflixpedidoapi.domain.service.exception.RegistroNaoEncontradoException;
-import br.com.andersillva.gameflixpedidoapi.messagebroker.outgoing.EventoPedidoRecebido;
+import br.com.andersillva.gameflixpedidoapi.messaging.outgoing.EventoPedidoRecebido;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
