@@ -29,7 +29,7 @@ public class EventoPagamentoRegistrado {
     @Transactional
     public void consume(@Payload String message, Acknowledgment ack) throws JsonProcessingException {
 
-        var statusPedidoDTO = mapper.readValue(message, StatusPedidoDTO.class);
+    	StatusPedidoDTO statusPedidoDTO = mapper.readValue(message, StatusPedidoDTO.class);
         pedidoService.registrarPagamento(statusPedidoDTO.getIdPedido());
         ack.acknowledge();
 

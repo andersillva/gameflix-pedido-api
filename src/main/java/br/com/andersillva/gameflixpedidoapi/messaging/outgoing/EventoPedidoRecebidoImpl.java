@@ -32,7 +32,7 @@ public class EventoPedidoRecebidoImpl implements EventoPedidoRecebido {
 	@Override
 	@Transactional(propagation=Propagation.MANDATORY)
 	public void gerarMensagem(Pedido pedido) {
-		var mensagemDTO = new MensagemPedidoRecebidoDTO(pedido);
+		MensagemPedidoRecebidoDTO mensagemDTO = new MensagemPedidoRecebidoDTO(pedido);
 		String mensagem;
 		try {
 			mensagem = objectMapper.writeValueAsString(mensagemDTO);
