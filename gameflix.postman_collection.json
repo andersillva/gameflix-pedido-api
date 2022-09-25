@@ -1,0 +1,279 @@
+{
+	"info": {
+		"_postman_id": "892ff8eb-68c4-488b-add3-f043fe4561ea",
+		"name": "gameflix",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "registrar-usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Fulano de Tal\",\r\n  \"cpf\": \"73857435950\",\r\n  \"dataNascimento\": \"1990-01-01\",\r\n  \"email\": \"fulano@gmail.com\",\r\n  \"senha\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_API_USUARIO}}/api/v1/usuario",
+							"host": [
+								"{{HOST_API_USUARIO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fulano@gmail.com\",\r\n  \"senha\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_API_USUARIO}}/api/v1/usuario/login",
+							"host": [
+								"{{HOST_API_USUARIO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter-jogos-do-usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBV1MtVFJBQi1GSU5BTCIsInN1YiI6IjEiLCJlbWFpbCI6ImFuZGVyc2lsbHZhMTFAZ21haWwuY29tIiwiaWF0IjoxNjYyNzU4NzE0LCJleHAiOjE2NjI4NDUxMTR9.jmBEHcJlmZnIY6CpZvTzmUNMGuNrIsVxCy_1paE80Ew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_API_USUARIO}}/api/v1/usuario/1/jogos",
+							"host": [
+								"{{HOST_API_USUARIO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"usuario",
+								"1",
+								"jogos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "pedido",
+			"item": [
+				{
+					"name": "registrar-pedido",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBV1MtVFJBQi1GSU5BTCIsInN1YiI6IjEiLCJlbWFpbCI6ImFuZGVyc2lsbHZhMTFAZ21haWwuY29tIiwiaWF0IjoxNjYzMDEyNzgyLCJleHAiOjE2NjMwOTkxODJ9.IpA46G1nlfZ-vCx2aavD-g6om4WC15FT45XrNa094do",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"itens\": [\r\n        {\"idProduto\": 1},\r\n        {\"idProduto\": 2},\r\n        {\"idProduto\": 3}\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_API_PEDIDO}}/api/v1/pedido",
+							"host": [
+								"{{HOST_API_PEDIDO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pedido"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "catalogo",
+			"item": [
+				{
+					"name": "pesquisar-catalogo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_API_CATALOGO}}/api/v1/catalogo/pesquisa?termo=jogo",
+							"host": [
+								"{{HOST_API_CATALOGO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"catalogo",
+								"pesquisa"
+							],
+							"query": [
+								{
+									"key": "termo",
+									"value": "jogo"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar-jogo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Resident Evil 2 Remake\",\r\n    \"genero\": \"Survivor Horror\",\r\n    \"fabricante\": \"Capcom\",\r\n    \"descricao\": \"Um vírus maligno toma conta dos residentes de Raccoon City em setembro de 1998, afundando a cidade no caos enquanto zumbis comedores de carne humana vagam pelas ruas em busca de sobreviventes.\",\r\n    \"anoLancamento\": 2022,\r\n    \"preco\": 200.00,\r\n    \"tags\": [\r\n        \"leon\",\r\n        \"claire\",\r\n        \"zumbi\",\r\n        \"racoon city\",\r\n        \"umbrella\",\r\n        \"mr x\",\r\n        \"jogo\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_API_CATALOGO}}/api/v1/catalogo/jogo",
+							"host": [
+								"{{HOST_API_CATALOGO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"catalogo",
+								"jogo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "cadastrar-assinatura",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Assinatura\",\r\n    \"descricao\": \"Assinatura de 6 meses\",\r\n    \"preco\": 380.00,\r\n    \"duracao\": 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_API_CATALOGO}}/api/v1/catalogo/assinatura",
+							"host": [
+								"{{HOST_API_CATALOGO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"catalogo",
+								"assinatura"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter-produto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_API_CATALOGO}}/api/v1/catalogo/2",
+							"host": [
+								"{{HOST_API_CATALOGO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"catalogo",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "obter-produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_API_CATALOGO}}/api/v1/catalogo?ids=1,2,3",
+							"host": [
+								"{{HOST_API_CATALOGO}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"catalogo"
+							],
+							"query": [
+								{
+									"key": "ids",
+									"value": "1,2,3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
